@@ -1,0 +1,24 @@
+`timescale 1ns/1ps
+module and_gate_tb;
+	reg a;
+	reg b;
+	wire y;
+	//實例化待測模組（DUT）
+	and_gate uut(
+		.a(a),
+		.b(b),
+		.y(y)
+	);
+	initial begin
+		$display("Starting simulation...");
+		$dumpfile("sim/and_gate.vcd"); //產生波形檔
+		$dumpvars(0,and_gate_tb);
+		
+		//測試輸入組合
+		a=0;b=0;#10;
+		a=0;b=1;#10;
+		a=1;b=0;#10;
+		a=1;b=1;#10;
+		$finish;
+	end
+endmodule
